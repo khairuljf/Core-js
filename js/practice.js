@@ -399,21 +399,67 @@ var countStop = () =>{
 var clrbtn =document.querySelector(".bgchange");
 const bodys =document.querySelector('body');
 
-
 var colors = ['red', 'blue', 'yellow', 'green', 'orange']
-
 
 if(clrbtn){
 	clrbtn.addEventListener('click', dsnone);
 }
 
 function dsnone(){
-	//let random = Math.floor(Math.random()*colors.length);
-	let color=null;
-	while(!color){
- 	color = prompt("Enter a color")
-	}
-	
-	console.log(color);
-	bodys.style.backgroundColor =color;
+	let random = Math.floor(Math.random()*colors.length);
+	// let color=null;
+	// while(!color){
+ // 	color = prompt("Enter a color")
+	// }
+
+	let rendomclr = Math.floor(Math.random()*colors.length);
+	// bodys.style.backgroundColor =color;
+	bodys.style.backgroundColor =colors[random];
 }
+
+
+const count_show = document.querySelector('.counter_show');
+const minus_count = document.querySelector('.low_count');
+const add_count = document.querySelector('.add_count');
+
+
+add_count.addEventListener('click', add_count_fun);
+minus_count.addEventListener('click', minus_count_fun);
+
+var count_var=0;
+
+function add_count_fun(){
+	count_var = count_var+1;
+
+	if(count_var==0){
+		count_show.style.color='white';
+	}
+	else if(count_var>0){
+		count_show.style.color='green';
+	}
+
+	count_show.innerHTML = count_var;
+
+}
+
+function minus_count_fun(){
+	count_var = count_var-1;
+
+	if(count_var==0){
+		count_show.style.color='white';
+		count_show.style.backgroundColor='orange';
+	}
+	else if(count_var<0){
+		count_show.style.color='red';
+	}
+	count_show.innerHTML = count_var;
+
+}
+
+
+
+
+
+
+
+
