@@ -349,8 +349,7 @@ function sumUp(...toAdd){
 	let result=0;
 
 	for(k in toAdd){
-		result += toAdd[k
-		];
+		result += toAdd[k];
 	}
 
 	return result;
@@ -417,7 +416,7 @@ function dsnone(){
 	bodys.style.backgroundColor =colors[random];
 }
 
-
+//Count script
 const count_show = document.querySelector('.counter_show');
 const minus_count = document.querySelector('.low_count');
 const add_count = document.querySelector('.add_count');
@@ -455,6 +454,45 @@ function minus_count_fun(){
 	count_show.innerHTML = count_var;
 
 }
+
+
+// Slider script 
+
+
+var sprev = document.querySelector('.sprev');
+var snext = document.querySelector('.snext');
+var sitem = document.querySelector('.slider-item');
+
+
+var cslider = 0;
+
+sprev.addEventListener('click',sprev_fc);
+
+function sprev_fc(){
+	 cslider++;
+
+	 if(cslider>2){
+	 	cslider=1;
+	 }
+	
+	sitem.style.backgroundImage= `url(images/slider-${cslider}.jpg)`;
+}
+
+snext.addEventListener('click',snext_fc);
+
+function snext_fc(){
+cslider--
+if(cslider<1){
+	cslider=2
+}
+
+	 sitem.style.background = `url(images/slider-${cslider}.jpg)`;
+
+}
+
+
+// Calculator
+
 
 
 

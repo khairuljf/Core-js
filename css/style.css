@@ -131,3 +131,10 @@ section#subscription::before{
     background: #191919;
     opacity: .5;
 }
+
+
+#slider .slider-item{
+    background: url('../images/backgournd-defatult.jpg');
+    height: 300px;
+    background-size: cover;
+}
