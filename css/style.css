@@ -147,5 +147,13 @@ section#subscription::before{
     color:#000;
 }
 
+.digiclock{
+    background: #000;
+}
+
+#clock{
+    color:#fff;
+    text-align: center;
+}
 
 
