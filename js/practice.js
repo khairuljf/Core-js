@@ -478,6 +478,18 @@ function sprev_fc(){
 	sitem.style.backgroundImage= `url(images/slider-${cslider}.jpg)`;
 }
 
+
+function autoSlider(){
+
+		setTimeout(autoSlider,7000);
+		snext_fc();
+
+}
+
+autoSlider();
+
+
+
 snext.addEventListener('click',snext_fc);
 
 function snext_fc(){
@@ -493,8 +505,40 @@ if(cslider<1){
 
 // Calculator
 
+const allbtn = document.querySelectorAll('#calbtn .nbtn');
+const cdisplay = document.querySelector('.display');
+const getResult = document.querySelector('#getResult');
+const dclear = document.querySelector('#clear');
 
+for(let i=0; i<allbtn.length; i++){
+	
+	allbtn[i].addEventListener('click', function(){
+		let result = allbtn[i].getAttribute('value');
 
+			cdisplay.value += result;
+	});
+
+}
+
+getResult.addEventListener('click', function(){
+
+	if(cdisplay.value == ''){
+		alert("Data empty");
+	}else if(cdisplay.value == '+' || cdisplay.value == '-' || cdisplay.value == '*' || cdisplay.value == '/'){
+			alert("Please enter any digitn then try Operateor");
+			cdisplay.value ='';
+
+	}else{
+
+		let getans = eval(cdisplay.value);
+		cdisplay.value = getans;
+	}
+	
+})
+
+dclear.addEventListener('click',function(){
+	cdisplay.value ='';
+});
 
 
 
