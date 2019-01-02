@@ -23,11 +23,19 @@ const notes = [{},
     title : 'wordpress',
     body: 'I love wordpress'
 
+    }, 
+    {
+    title : 'php',
+    body: 'I love php'
+
+    }
+    , 
+    {
+    title : 'js',
+    body: 'I love js'
+
     }
 ]
-
-//console.log(notes)
-
 
 // Find targeted array. 
 const index = notes.findIndex(function(node, index){
@@ -37,7 +45,7 @@ const index = notes.findIndex(function(node, index){
 
 console.log(index)
 
-
+// Find data by findIndex
 function findNote(nodes, nodeTitle){
     const index = nodes.findIndex(function(node, index){
         return node.title === nodeTitle
@@ -48,5 +56,16 @@ function findNote(nodes, nodeTitle){
 const indexTitle = findNote(notes, 'html');
 
 console.log(indexTitle)
+
+
+// Find data by find
+const findNotes = function (notes, noteTitle) {
+    return notes.find(function (note, index) {
+        return note.title === noteTitle
+    })
+}
+
+const note = findNotes(notes, 'js')
+console.log(note)
 
 
