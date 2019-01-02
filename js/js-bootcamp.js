@@ -69,3 +69,34 @@ const note = findNotes(notes, 'js')
 console.log(note)
 
 
+const persons ={
+    name : 'khairul islam',
+    expences : [],
+    addExpences : function(details, taka){
+        this.expences.push({
+            desc:details,
+            ammount:taka
+        })
+    },
+    accountSummary : function(){
+        let totalkhoroch = 0;
+
+        this.expences.forEach(function(single){
+            totalkhoroch =  totalkhoroch + single.ammount;
+        })
+
+        return `${name} total spend $${totalkhoroch}`
+
+    }
+}
+
+
+persons.addExpences('Tea', 250 );
+persons.addExpences('Cofee', 550 );
+
+console.log(persons.accountSummary());
+
+
+
+
+
