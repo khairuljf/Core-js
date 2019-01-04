@@ -195,33 +195,33 @@ document.querySelector('#cform').addEventListener('submit', function(e){
 
 
 // Toto array 
-let todoList = [
-    {
-        title: 'Sign in',
-        complete: true,
-    },
-    {
-        title: 'Sign out',
-        complete: false,
-    },
-    {                         
-        title: 'Joho project',
-        complete: true,
-    },
-    {
-        title: 'Joho Support',
-        complete: false,
-    }
-]
+let todoList = []
+
+
+let todojson = localStorage.getItem('todos')
+
+
+if(todojson !== null){
+    todoList = JSON.parse(todojson)
+}
 
 
 let serchfunc = function(todo, targetval){
    let todofilt = todo.filter(function(single_todo){
-       return single_todo.title.toLowerCase().includes(targetval.toLowerCase())
+       return single_todo.title.toLowerCase().includes(targetval.title.toLowerCase())
    })
    //console.log(todofilt)
 
    document.querySelector('#totList').innerHTML = ''
+
+
+  todofilt = todofilt.filter(function(todo){
+      if(targetval.hidecomple){
+          return !todo.complete
+      }else{
+          return true
+      }
+  })
 
    todofilt.forEach(function(after_filter_single_item){
        let el = document.createElement('p')
@@ -236,35 +236,43 @@ let serchfunc = function(todo, targetval){
 
 const addtoDo ={
     title:'',
-    complete:false
+    hidecomple:false
 }
 // Add todo in list
 document.querySelector('#additem').addEventListener('submit', function(e){
     e.preventDefault()
     let ele = e.target.elements.addtodo;
-    addtoDo.title = ele.value
-    todoList.push({
+
+
+      todoList.push({
         title:ele.value,
         complete:false
     })
 
-    serchfunc(todoList , '')
+
+    localStorage.setItem('todos', JSON.stringify(todoList))
+    serchfunc(todoList , addtoDo)
     ele.value = ''
 
 })
 
-serchfunc(todoList , '')
+serchfunc(todoList , addtoDo)
 
 // Input search
 document.querySelector('.searchfromtoto').addEventListener('input', function(e){
-    serchfunc(todoList , e.target.value)
+    addtoDo.title =  e.target.value
+    serchfunc(todoList , addtoDo)
     document.querySelector('#result').textContent = 'Search result'
 })
 
 // Check box
 
 document.querySelector('#completeor').addEventListener('input', function(e){
-    console.log(e.target.checked)
+
+    addtoDo.hidecomple =  e.target.checked
+
+    serchfunc(todoList , addtoDo)
+
 })
 
 
