@@ -10,11 +10,35 @@
 
   </head>
   <body>
+    <br>
 <div class="container">
 
+<div class="row">
+
+    <div class="col">
+        <form action="#" id="todoSearch">
+            <input type="text" placeholder="Seach from list" name="search" class="searchfromtoto">
+            <input type="checkbox" id="completeor">
+            <label for="completeor"> Filter by complete</label>
+        </form>
+
+        <form action="#" id="additem">
+          <input type="text" name="addtodo" placeholder="Add todo in list">
+          <input type="submit" value="Add list">
+        </form>
+    </div>
+
+    <div class="col">
+      <h3 id="result">All list</h3>
+        <div id="totList"></div>
+    </div>
+
+</div>
+  
 
 
-  <h1>hello</h1>
+
+
 </div>
     <hr>
     <div class = "container">
@@ -30,9 +54,6 @@
   <h3>Search</h3>
   <form action="#" id="cform">
       <input type="text" name="pname" id="search" placeholder="Search text">
-      <input type="checkbox" id="checkBox" name="checkBox">
-
-      <input type="submit" value="submit">
   </form>
   <div id="nodeList">
 

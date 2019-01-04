@@ -193,6 +193,8 @@ document.querySelector('#cform').addEventListener('submit', function(e){
 
 
 
+
+// Toto array 
 let todoList = [
     {
         title: 'Sign in',
@@ -200,9 +202,9 @@ let todoList = [
     },
     {
         title: 'Sign out',
-        complete: true,
+        complete: false,
     },
-    {
+    {                         
         title: 'Joho project',
         complete: true,
     },
@@ -211,6 +213,61 @@ let todoList = [
         complete: false,
     }
 ]
+
+
+let serchfunc = function(todo, targetval){
+   let todofilt = todo.filter(function(single_todo){
+       return single_todo.title.toLowerCase().includes(targetval.toLowerCase())
+   })
+   //console.log(todofilt)
+
+   document.querySelector('#totList').innerHTML = ''
+
+   todofilt.forEach(function(after_filter_single_item){
+       let el = document.createElement('p')
+            el.style.backgroundColor ='orange'
+           el.textContent =  after_filter_single_item.title
+        document.querySelector('#totList').append(el)    
+
+   })
+
+}
+
+
+const addtoDo ={
+    title:'',
+    complete:false
+}
+// Add todo in list
+document.querySelector('#additem').addEventListener('submit', function(e){
+    e.preventDefault()
+    let ele = e.target.elements.addtodo;
+    addtoDo.title = ele.value
+    todoList.push({
+        title:ele.value,
+        complete:false
+    })
+
+    serchfunc(todoList , '')
+    ele.value = ''
+
+})
+
+serchfunc(todoList , '')
+
+// Input search
+document.querySelector('.searchfromtoto').addEventListener('input', function(e){
+    serchfunc(todoList , e.target.value)
+    document.querySelector('#result').textContent = 'Search result'
+})
+
+// Check box
+
+document.querySelector('#completeor').addEventListener('input', function(e){
+    console.log(e.target.checked)
+})
+
+
 
 
 
