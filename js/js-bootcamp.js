@@ -170,7 +170,7 @@ const renderNotes = function (notes, filters) {
 
 }
 
-//renderNotes(notes, filters)
+
 
 const filters = {
     searchText: ''
@@ -195,67 +195,35 @@ document.querySelector('#cform').addEventListener('submit', function(e){
 
 
 // Toto array 
-let todoList = []
 
 
-let todojson = localStorage.getItem('todos')
-
-
-if(todojson !== null){
-    todoList = JSON.parse(todojson)
-}
-
-
-let serchfunc = function(todo, targetval){
-   let todofilt = todo.filter(function(single_todo){
-       return single_todo.title.toLowerCase().includes(targetval.title.toLowerCase())
-   })
-   //console.log(todofilt)
-
-   document.querySelector('#totList').innerHTML = ''
-
-
-  todofilt = todofilt.filter(function(todo){
-      if(targetval.hidecomple){
-          return !todo.complete
-      }else{
-          return true
-      }
-  })
-
-   todofilt.forEach(function(after_filter_single_item){
-       let el = document.createElement('p')
-            el.style.backgroundColor ='orange'
-           el.textContent =  after_filter_single_item.title
-        document.querySelector('#totList').append(el)    
-
-   })
-
-}
-
+const todoList = getSaveNotes()
 
 const addtoDo ={
     title:'',
     hidecomple:false
 }
+
+serchfunc(todoList , addtoDo)
+
 // Add todo in list
 document.querySelector('#additem').addEventListener('submit', function(e){
     e.preventDefault()
     let ele = e.target.elements.addtodo;
 
-
       todoList.push({
+        id:uuidv4(),
         title:ele.value,
         complete:false
     })
 
-
     localStorage.setItem('todos', JSON.stringify(todoList))
     serchfunc(todoList , addtoDo)
     ele.value = ''
-
 })
 
+
+// Onload search list call function
 serchfunc(todoList , addtoDo)
 
 // Input search
@@ -265,14 +233,10 @@ document.querySelector('.searchfromtoto').addEventListener('input', function(e){
     document.querySelector('#result').textContent = 'Search result'
 })
 
-// Check box
-
+// Check box search
 document.querySelector('#completeor').addEventListener('input', function(e){
-
     addtoDo.hidecomple =  e.target.checked
-
     serchfunc(todoList , addtoDo)
-
 })
 
 

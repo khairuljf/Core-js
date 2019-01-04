@@ -286,9 +286,8 @@ var revname = name.split("").reverse().join("");
 
 console.log(revname);
 
-console.warn("Hello khairul!");
 console.info("Hello khairul!");
-console.error("Hello khairul!");
+
 
 
 
