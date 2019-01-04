@@ -9,7 +9,7 @@ console.log(random);
 
 // Array object 
 
-const notes = [{},
+const notes = [
     {
      title : 'Code',
      body: 'I love coading'
@@ -72,6 +72,13 @@ console.log(note)
 const persons ={
     name : 'khairul islam',
     expences : [],
+    income:[],
+    addIncome: function(incomeSource, income_ar_poriman){
+        this.income.push({
+            source: incomeSource,
+            mainAccount: income_ar_poriman
+        })
+    },
     addExpences : function(details, taka){
         this.expences.push({
             desc:details,
@@ -79,22 +86,132 @@ const persons ={
         })
     },
     accountSummary : function(){
-        let totalkhoroch = 0;
 
-        this.expences.forEach(function(single){
-            totalkhoroch =  totalkhoroch + single.ammount;
+        // Total income
+        let totalJoma = 0
+
+        this.income.forEach(function(single){
+            totalJoma = totalJoma + single.mainAccount
         })
 
-        return `${name} total spend $${totalkhoroch}`
+        //Total khoroch ar hisab
+        let totalKhoroch = 0;
+        this.expences.forEach(function(single){
+            totalKhoroch =  totalKhoroch + single.ammount;
+        })
+
+        return `${name} total spend $${totalKhoroch} from $${totalJoma}`
 
     }
 }
 
 
+persons.addIncome('f', 500 );
+persons.addIncome('office', 1000 );
+
+
 persons.addExpences('Tea', 250 );
 persons.addExpences('Cofee', 550 );
-
 console.log(persons.accountSummary());
+
+
+
+// Button name change & add clas or remove
+var mybdt = document.querySelector('#ebtn');
+mybdt.addEventListener('click', function(e){
+
+    if(mybdt.classList.contains("readmore")){
+
+        mybdt.classList.remove("readmore");
+        e.target.textContent ="Close"
+    }else{
+        mybdt.classList.add("readmore");
+        e.target.textContent ="Read more"
+    }
+    
+   
+})
+
+
+// Remove all item by class
+document.querySelector('#hidetxt').addEventListener('click', function(){
+    document.querySelectorAll('.noted').forEach(function(single_note){
+        single_note.remove()
+    })
+
+})
+
+
+// start Search function 
+const renderNotes = function (notes, filters) {
+    
+    const filteredNotes = notes.filter(function (note) {
+        return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
+    })
+    console.log(filteredNotes)
+
+    document.querySelector("#nodeList").innerHTML = ''
+
+    if(filteredNotes.length>0){
+        filteredNotes.forEach(function(singe_item){
+            let el  =document.createElement('p')
+            el.textContent = singe_item.title
+    
+           document.querySelector("#nodeList").appendChild(el)
+    
+        })
+    }else{
+        let el  =document.createElement('p')
+        el.textContent = 'No data found'
+
+       document.querySelector("#nodeList").appendChild(el)
+
+    }
+
+}
+
+//renderNotes(notes, filters)
+
+const filters = {
+    searchText: ''
+}
+
+
+document.querySelector('#search').addEventListener('input', function(e){
+    filters.searchText = e.target.value
+    renderNotes(notes, filters)
+})
+
+
+// End search funcionality
+
+document.querySelector('#cform').addEventListener('submit', function(e){
+    e.preventDefault()
+    console.log(e.target.elements.pname.value)
+    console.log(e.target.elements.checkBox.checked)
+})
+
+
+
+let todoList = [
+    {
+        title: 'Sign in',
+        complete: true,
+    },
+    {
+        title: 'Sign out',
+        complete: true,
+    },
+    {
+        title: 'Joho project',
+        complete: true,
+    },
+    {
+        title: 'Joho Support',
+        complete: false,
+    }
+]
+
 
 
 
