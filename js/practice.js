@@ -289,9 +289,8 @@ var revname = name.split("").reverse().join("");
 
 console.log(revname);
 
-console.warn("Hello khairul!");
 console.info("Hello khairul!");
-console.error("Hello khairul!");
+
 
 
 
@@ -380,3 +379,11 @@ console.log(k(kstri));
 //setTimeout
 //clearTimeout
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 4ceb527039af7f2607affb20445397035f630b07

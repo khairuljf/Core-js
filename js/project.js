@@ -164,6 +164,7 @@ dclear.addEventListener('click',function(){
 });
 
 
+<<<<<<< HEAD
 
 //clock
 
@@ -248,3 +249,6 @@ console.log('Hello world k');
 
 
 
+=======
+// New script
+>>>>>>> 4ceb527039af7f2607affb20445397035f630b07
