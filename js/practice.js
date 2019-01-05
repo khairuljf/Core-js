@@ -376,14 +376,3 @@ var kstri ="Hello world!";
 
 console.log(k(kstri));
 
-//setTimeout
-//clearTimeout
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
->>>>>>> 4ceb527039af7f2607affb20445397035f630b07
