@@ -24,7 +24,7 @@ const removeTheNode = function(id){
 
 //Change uncomplete to complete =  flase to true
 
-const markComplete = function(id){
+const markComplete = function(id){ 
 
     const CompleteTask = todoList.findIndex(function(single_item){
         return single_item.id === id
@@ -47,7 +47,17 @@ const createNewElement = function(after_filter_single_item){
         let creatBlock = document.createElement('div')
 
          // Create span tag for text
-        let crateParagraph = document.createElement('span')
+        let crateParagraph = document.createElement('a')
+
+        crateParagraph.style.backgroundColor ='orange'
+        crateParagraph.style.marginRight ='20px'
+        crateParagraph.style.color ='#fff'
+        crateParagraph.style.padding ='2px 15px'
+        crateParagraph.style.width ='200px'
+        crateParagraph.style.display ='inline-block'
+
+
+        crateParagraph.setAttribute('href', `/edit.html#${after_filter_single_item.id}`)
 
         // Create box create
         let creatCheckbox = document.createElement('input')
@@ -65,19 +75,7 @@ const createNewElement = function(after_filter_single_item){
             creatCheckbox.removeAttribute('checked')
         }
 
-        
 
-        
-        
-
-        
-
-        //console.log(todoList[after_filter_single_item])
-
-        // if(todoList[after_filter_single_item].complete){
-        //     //creatCheckbox.setAttribute('checked', 'checked')
-        // }
-        
 
         //Create label for check box
 
@@ -99,8 +97,7 @@ const createNewElement = function(after_filter_single_item){
         })
 
 
-        crateParagraph.style.backgroundColor ='orange'
-        crateParagraph.style.marginRight ='20px'
+        
 
     if(after_filter_single_item.title.length>0){
         crateParagraph.textContent =  after_filter_single_item.title

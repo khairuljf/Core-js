@@ -214,9 +214,12 @@ document.querySelector('#additem').addEventListener('submit', function(e){
     e.preventDefault()
     let ele = e.target.elements.addtodo;
 
+
+
       todoList.push({
         id:uuidv4(),
         title:ele.value,
+        desk:'',
         complete:false
     })
 
