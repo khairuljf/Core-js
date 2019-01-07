@@ -12,10 +12,32 @@ const getSaveNotes = function(){
     }
 }
 
-
+//Remove item from array
 const removeTheNode = function(id){
+
+    const removeItem = todoList.findIndex(function(single_item){
+        return single_item.id === id
+    })
+
+    todoList.splice(removeItem,1)
+}
+
+//Change uncomplete to complete =  flase to true
+
+const markComplete = function(id){
+
+    const CompleteTask = todoList.findIndex(function(single_item){
+        return single_item.id === id
+    })
+    if(todoList[CompleteTask].complete){
+        todoList[CompleteTask].complete=false;
+    }else{
+        todoList[CompleteTask].complete=true;
+    }
     
 }
+
+
 
 
 // Create dom element 
@@ -30,7 +52,32 @@ const createNewElement = function(after_filter_single_item){
         // Create box create
         let creatCheckbox = document.createElement('input')
         creatCheckbox.setAttribute('type', 'checkbox')
-        creatCheckbox.setAttribute('id','completeTask')
+
+        
+        creatCheckbox.addEventListener('change', function(){
+            markComplete(after_filter_single_item.id)
+            localStorage.setItem('todos', JSON.stringify(todoList))
+        })
+
+        if(after_filter_single_item.complete){
+            creatCheckbox.setAttribute('checked', 'checked')
+        }else{
+            creatCheckbox.removeAttribute('checked')
+        }
+
+        
+
+        
+        
+
+        
+
+        //console.log(todoList[after_filter_single_item])
+
+        // if(todoList[after_filter_single_item].complete){
+        //     //creatCheckbox.setAttribute('checked', 'checked')
+        // }
+        
 
         //Create label for check box
 
@@ -46,10 +93,11 @@ const createNewElement = function(after_filter_single_item){
 
         //serchfunc(todoList , addtoDo)
         creatButton.addEventListener('click',function(){
-
             removeTheNode(after_filter_single_item.id)
             serchfunc(todoList, addtoDo)
+            localStorage.setItem('todos', JSON.stringify(todoList))
         })
+
 
         crateParagraph.style.backgroundColor ='orange'
         crateParagraph.style.marginRight ='20px'
