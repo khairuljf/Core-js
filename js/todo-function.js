@@ -12,6 +12,12 @@ const getSaveNotes = function(){
     }
 }
 
+
+const saveNotes = function(notes){
+    localStorage.setItem('todos', JSON.stringify(notes))
+}
+
+
 //Remove item from array
 const removeTheNode = function(id){
 
@@ -66,7 +72,7 @@ const createNewElement = function(after_filter_single_item){
         
         creatCheckbox.addEventListener('change', function(){
             markComplete(after_filter_single_item.id)
-            localStorage.setItem('todos', JSON.stringify(todoList))
+            saveNotes(todoList)
         })
 
         if(after_filter_single_item.complete){
@@ -93,7 +99,7 @@ const createNewElement = function(after_filter_single_item){
         creatButton.addEventListener('click',function(){
             removeTheNode(after_filter_single_item.id)
             serchfunc(todoList, addtoDo)
-            localStorage.setItem('todos', JSON.stringify(todoList))
+            saveNotes(todoList)
         })
 
 
