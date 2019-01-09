@@ -1,7 +1,7 @@
 const nodeId = location.hash.substring(1)
-const nodes = getSaveNotes()
+let nodes = getSaveNotes()
 
-const node = nodes.find(function(single_node){
+let node = nodes.find(function(single_node){
 return single_node.id === nodeId
 })
 
@@ -37,10 +37,22 @@ document.querySelector('#input-title').addEventListener('input', function(e){
  })
 
 window.addEventListener('storage', function(e){
-   debugger
-   // if(e.key === 'todos'){
+   if(e.key === 'todos'){
+      nodes = JSON.parse(e.newValue)
 
-   // }
-   //debugger
-   //console.log('Something change')
+      let node = nodes.find(function(single_node){
+         return single_node.id === nodeId
+         })
+         
+         if(node==undefined){
+            location.assign('/practice.html')
+         }
+         
+         // Show previous data in input field
+          document.querySelector('#input-title').value = node.title
+          document.querySelector('#input-require').value = node.desk
+ 
+    
+    }
+  
 })

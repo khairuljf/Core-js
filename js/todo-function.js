@@ -142,3 +142,12 @@ const serchfunc = function(todo, targetval){
     })
  
  }
+
+ window.addEventListener('storage', function(e){
+    if(e.key === 'todos'){
+       nodes = JSON.parse(e.newValue)    
+        saveNotes(nodes)
+        serchfunc(nodes, addtoDo)
+     }
+   
+ })

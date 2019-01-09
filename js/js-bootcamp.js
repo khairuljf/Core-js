@@ -206,7 +206,6 @@ const addtoDo ={
 
 // Onload search list call function
 
-
  serchfunc(todoList , addtoDo)
 
 // Add todo in list
