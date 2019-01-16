@@ -99,12 +99,9 @@ const persons ={
         this.expences.forEach(function(single){
             totalKhoroch =  totalKhoroch + single.ammount;
         })
-
         return `${name} total spend $${totalKhoroch} from $${totalJoma}`
-
     }
 }
-
 
 persons.addIncome('f', 500 );
 persons.addIncome('office', 1000 );
@@ -128,8 +125,6 @@ mybdt.addEventListener('click', function(e){
         mybdt.classList.add("readmore");
         e.target.textContent ="Read more"
     }
-    
-   
 })
 
 
@@ -138,9 +133,7 @@ document.querySelector('#hidetxt').addEventListener('click', function(){
     document.querySelectorAll('.noted').forEach(function(single_note){
         single_note.remove()
     })
-
 })
-
 
 // start Search function 
 const renderNotes = function (notes, filters) {
@@ -201,17 +194,18 @@ const todoList = getSaveNotes()
 
 const addtoDo ={
     title:'',
-    hidecomple:false
+    sortBy:'lastEdit',
 }
 
 // Onload search list call function
 
- serchfunc(todoList , addtoDo)
+ serchfunc(todoList, addtoDo)
 
 // Add todo in list
 document.querySelector('#additem').addEventListener('submit', function(e){
     e.preventDefault()
     let ele = e.target.elements.addtodo
+    console.log(e.target.elements.addtodo)
     let timeStamp =  moment().valueOf()
 
       todoList.push({
@@ -241,6 +235,14 @@ document.querySelector('.searchfromtoto').addEventListener('input', function(e){
 // Check box search
 document.querySelector('#completeor').addEventListener('input', function(e){
     addtoDo.hidecomple =  e.target.checked
+    serchfunc(todoList , addtoDo)
+})
+
+// Fiter by drop down
+
+document.querySelector('#filter-by').addEventListener('change', function(e){
+    addtoDo.sortBy =  e.target.value
+    //alert(e.target.value)
     serchfunc(todoList , addtoDo)
 })
 
