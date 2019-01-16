@@ -4,7 +4,7 @@ let max = 20
 
 let random  = Math.floor(Math.random() * (max - min +1)) + min
 
-console.log(random);
+//console.log(random);
 
 
 // Array object 
@@ -43,7 +43,7 @@ const index = notes.findIndex(function(node, index){
     return node.title === 'html'
 })
 
-console.log(index)
+//console.log(index)
 
 // Find data by findIndex
 function findNote(nodes, nodeTitle){
@@ -55,7 +55,7 @@ function findNote(nodes, nodeTitle){
 
 const indexTitle = findNote(notes, 'html');
 
-console.log(indexTitle)
+//console.log(indexTitle)
 
 
 // Find data by find
@@ -66,7 +66,7 @@ const findNotes = function (notes, noteTitle) {
 }
 
 const note = findNotes(notes, 'js')
-console.log(note)
+//console.log(note)
 
 
 const persons ={
@@ -112,7 +112,7 @@ persons.addIncome('office', 1000 );
 
 persons.addExpences('Tea', 250 );
 persons.addExpences('Cofee', 550 );
-console.log(persons.accountSummary());
+//console.log(persons.accountSummary());
 
 
 
@@ -211,14 +211,15 @@ const addtoDo ={
 // Add todo in list
 document.querySelector('#additem').addEventListener('submit', function(e){
     e.preventDefault()
-    let ele = e.target.elements.addtodo;
-
-
+    let ele = e.target.elements.addtodo
+    let timeStamp =  moment().valueOf()
 
       todoList.push({
         id:uuidv4(),
         title:ele.value,
         desk:'',
+        createdAt: timeStamp, 
+        updatedAt: timeStamp, 
         complete:false
     })
 

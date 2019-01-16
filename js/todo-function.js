@@ -1,6 +1,6 @@
 // Get save note
 
-const getSaveNotes = function(){
+let getSaveNotes = function(){
         // Get data from localstorage
     let todojson = localStorage.getItem('todos')
 
@@ -145,9 +145,11 @@ const serchfunc = function(todo, targetval){
 
  window.addEventListener('storage', function(e){
     if(e.key === 'todos'){
-       nodes = JSON.parse(e.newValue)    
-        saveNotes(nodes)
-        serchfunc(nodes, addtoDo)
+        getSaveNotes = JSON.parse(e.newValue)    
+        saveNotes(getSaveNotes)
+        serchfunc(getSaveNotes, addtoDo)
      }
    
  })
+
+
