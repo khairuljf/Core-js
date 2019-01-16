@@ -12,7 +12,7 @@ if(node==undefined){
 // Show previous data in input field
  document.querySelector('#input-title').value = node.title
  document.querySelector('#input-require').value = node.desk
- document.querySelector('#input-time').value = node.timeAt
+ document.querySelector('#input-time').innerHTML = `Last edited : ${moment(node.updatedAt).fromNow() }` 
 // Update data function
 const updateData = function(currentId){
 
@@ -54,8 +54,6 @@ window.addEventListener('storage', function(e){
           document.querySelector('#input-title').value = node.title
           document.querySelector('#input-require').value = node.desk
 
- 
-    
     }
   
 })
