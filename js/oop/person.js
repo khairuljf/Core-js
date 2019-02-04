@@ -1,15 +1,33 @@
-const Person = function(fName, age, likes=[]){
-    this.firstName = fName  
-    this.lastName = fName  
-    this.age = age 
-    console.log(likes)
+
+
+class PersonClass {
+
+    constructor(fName, age, likes=[]){
+        this.firstName = fName  
+        this.lastName = fName  
+        this.age = age 
+        this.likes = likes
+    }
+
+    getBio(){
+        bio = `${this.fName} is ${this.age}`
+        this
+    }
+
 }
+
+
+
+
+const myPerson = new PersonClass('Rubel Ali', '24' , ['coding', 'watching movie'])
+
+console.log(myPerson)
 
 Person.prototype.getBio = function(){
-    return `${this.firstName} is ${this.age}`
+    
 }
 
-const me = new Person('khairul', 25, 'Coding, Playing')
+
 
 Person.prototype.setName = function(fullName){
     const names =  fullName.split(' ')
@@ -17,6 +35,9 @@ Person.prototype.setName = function(fullName){
     this.lastName = names[0]
 
 }
+
+
+const me = new Person('khairul', 25, 'Coding, Playing')
 me.setName('Khairul islam', )
 
-console.log(me)
+console.log(me.getBio())
