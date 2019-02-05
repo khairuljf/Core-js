@@ -1,17 +1,16 @@
 
 class Hangman{
-    constructor(word, remainingGuesses){
 
+    constructor(word, remainingGuesses){
     this.word =  word.toLowerCase().split('')
     this.remainingGuesses = remainingGuesses
     this.guessedLetters = []
     this.status = 'Playing'
 
     }
+
     calculateStatus(){
-
         let finished = true
-
     this.word.forEach((letter)=>{
         if(this.guessedLetters.includes(letter)){
            
@@ -29,6 +28,7 @@ class Hangman{
         }
 
     }
+
     getStatusMessage(){
 
         if(this.status ==='Playing'){
@@ -43,7 +43,6 @@ class Hangman{
 
     getPuzzle(){
         let puzzle = ''
-
     this.word.forEach( (single_letter) =>{
         if(this.guessedLetters.includes(single_letter) || single_letter == ' '){
             puzzle += single_letter
@@ -91,7 +90,7 @@ getPluzzle.textContent =  game1.getPuzzle()
 gameStatus.textContent = game1.getStatusMessage()
 
 
-    window.addEventListener('keypress', function(e){
+    window.addEventListener('keypress', (e)=>{
        
         game1.makeGuess(e.key)
         getPluzzle.textContent =  game1.getPuzzle()
@@ -102,4 +101,36 @@ gameStatus.textContent = game1.getStatusMessage()
      })
 
 
+const request = new XMLHttpRequest()
 
+request.addEventListener('readystatechange', (e)=>{
+    if(e.target.readyState ===4 && e.target.status ===200){
+        const data = JSON.parse(e.target.responseText)
+        //console.log(data)
+    }else if(e.target.readyState===4){
+      //  console.log('Something wrong')
+    }
+})
+
+request.open('GET', 'http://puzzle.mead.io/puzzle?wordCount=1')
+request.send()
+
+
+const newRequest = new XMLHttpRequest()
+
+newRequest.addEventListener('readystatechange', (e)=>{
+    if(e.target.readyState ===4 && e.target.status ===200){
+
+        let data  = JSON.parse(e.target.responseText)
+        data.forEach((single_data)=>{
+           if(single_data.alpha2Code==='BD'){
+               console.log(single_data.name)
+           }
+        })
+    }else if(e.target.readyState===4){
+        console.log('Something wrong')
+    }
+})
+
+newRequest.open('GET', 'http://restcountries.eu/rest/v2/all')
+newRequest.send()

@@ -1,6 +1,6 @@
 
 
-class PersonClass {
+class Person {
 
     constructor(fName, age, likes=[]){
         this.firstName = fName  
@@ -11,8 +11,9 @@ class PersonClass {
 
     getBio(){
         let bio = `${this.firstName} is ${this.age} `
+
         this.likes.forEach((like)=>{
-            bio += `${this.firstName} likes ${like} `
+            bio += `${this.firstName} likes ${like}`
         })
 
         return bio
@@ -20,28 +21,30 @@ class PersonClass {
 
 }
 
-
-
-
-const myPerson = new PersonClass('Rubel Ali', '24' , ['coding', 'watching movie'])
-
-console.log(myPerson.getBio())
-
-// Person.prototype.getBio = function(){
-    
-// }
-
-
-
-Person.prototype.setName = function(fullName){
-    const names =  fullName.split(' ')
-    this.firstName = names[0]
-    this.lastName = names[0]
-
+class student extends Person{
+    constructor(fName, age, readIn, likes){
+        super(fName, age, likes)
+        this.readingClass = readIn
+    }
+    getBio(){
+        return `${fName} is a student & he read in class ${this.readingClass}`
+    }
 }
 
 
-const me = new Person('khairul', 25, 'Coding, Playing')
-me.setName('Khairul islam', )
+const studentInfo =  new student('Manik Riahn', '24', '4th', ['reading', 'visiting new place'])
+
+console.log(studentInfo)
+
+
+
+const myPerson = new Person('Rubel Ali', '24' , ['coding', 'watching movie'])
+
+console.log(myPerson.getBio())
+
+
+
+const me = new Person('khairul', 25, ['Coding, Playing'])
+
 
 console.log(me.getBio())
