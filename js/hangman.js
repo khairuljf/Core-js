@@ -1,13 +1,16 @@
-const Hangman = function(word, remainingGuesses){
+
+class Hangman{
+    constructor(word, remainingGuesses){
+
     this.word =  word.toLowerCase().split('')
     this.remainingGuesses = remainingGuesses
     this.guessedLetters = []
     this.status = 'Playing'
-}
 
-Hangman.prototype.calculateStatus = function(){
+    }
+    calculateStatus(){
 
-    let finished = true
+        let finished = true
 
     this.word.forEach((letter)=>{
         if(this.guessedLetters.includes(letter)){
@@ -18,16 +21,16 @@ Hangman.prototype.calculateStatus = function(){
     })
 
     if(this.remainingGuesses === 0){
-        this.status = 'Failed'
-    }else if(finished){
-        this.status = 'Finished'
-    }else{
-        this.status = 'Playing'
+            this.status = 'Failed'
+        }else if(finished){
+            this.status = 'Finished'
+        }else{
+            this.status = 'Playing'
+        }
+
     }
-}
+    getStatusMessage(){
 
-
-Hangman.prototype.getStatusMessage= function(){
         if(this.status ==='Playing'){
             return ` Guesses left ${this.remainingGuesses}`
         }else if(this.status ==='Failed'){
@@ -35,10 +38,11 @@ Hangman.prototype.getStatusMessage= function(){
         }else{
             return ' Success : Great work'
         }
-}
 
-Hangman.prototype.getPuzzle = function(){
-    let puzzle = ''
+    }
+
+    getPuzzle(){
+        let puzzle = ''
 
     this.word.forEach( (single_letter) =>{
         if(this.guessedLetters.includes(single_letter) || single_letter == ' '){
@@ -48,27 +52,30 @@ Hangman.prototype.getPuzzle = function(){
         }
     })
     return puzzle
-}
 
-
-
-Hangman.prototype.makeGuess = function(guess){
-    guess = guess.toLowerCase()
-
-    const isUnique =  !this.guessedLetters.includes(guess)
-    const isBadGuess = !this.word.includes(guess)
-
-    if(isUnique){
-        this.guessedLetters.push(guess)
-        //console.log('success')
-       
-    }
-    if(isUnique && isBadGuess ){
-        this.remainingGuesses --
     }
 
-    this.calculateStatus()
+    makeGuess(guess){
+
+        guess = guess.toLowerCase()
+
+        const isUnique =  !this.guessedLetters.includes(guess)
+        const isBadGuess = !this.word.includes(guess)
+    
+        if(isUnique){
+            this.guessedLetters.push(guess)
+            //console.log('success')
+           
+        }
+        if(isUnique && isBadGuess ){
+            this.remainingGuesses --
+        }
+    
+        this.calculateStatus()
+
+    }
 }
+
 
 
 

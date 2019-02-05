@@ -10,8 +10,12 @@ class PersonClass {
     }
 
     getBio(){
-        bio = `${this.fName} is ${this.age}`
-        this
+        let bio = `${this.firstName} is ${this.age} `
+        this.likes.forEach((like)=>{
+            bio += `${this.firstName} likes ${like} `
+        })
+
+        return bio
     }
 
 }
@@ -21,11 +25,11 @@ class PersonClass {
 
 const myPerson = new PersonClass('Rubel Ali', '24' , ['coding', 'watching movie'])
 
-console.log(myPerson)
+console.log(myPerson.getBio())
 
-Person.prototype.getBio = function(){
+// Person.prototype.getBio = function(){
     
-}
+// }
 
 
 
