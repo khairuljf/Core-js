@@ -1,6 +1,6 @@
 // Get save note
 
-const getSaveNotes = function(){
+let getSaveNotes = function(){
         // Get data from localstorage
     let todojson = localStorage.getItem('todos')
 
@@ -118,9 +118,55 @@ const createNewElement = function(after_filter_single_item){
     return creatBlock
 }
 
+// tot short function
+
+let sortTodo = function(todo, sortBy ){
+    if(sortBy ==='lastEdit'){
+        return todo.sort( function(a , b){
+            if(a.updatedAt > b.updatedAt ){
+                return -1
+            }else if(a.updatedAt < b.updatedAt ){
+                return 1
+            }else{
+                return 0
+            }
+        })
+
+
+
+    }else if(sortBy === 'recentlyCrated'){
+        return todo.sort( function(a , b){
+            if(a.createdAt > b.createdAt ){
+                return -1
+            }else if(a.createdAt < b.createdAt ){
+                return 1
+            }else{
+                return 0
+            }
+        })
+
+    }else if(sortBy === 'sortAlpahbetically'){
+        return todo.sort( function(a , b){
+            if(a.title.toLowerCase() > b.title.toLowerCase() ){
+                return -1
+            }else if(a.title.toLowerCase()  < b.title.toLowerCase() ){
+                return 1
+            }else{
+                return 0
+            }
+        })
+    }
+
+
+}
+
 
 // Filter data from array
 const serchfunc = function(todo, targetval){
+
+
+     todo = sortTodo(todo, targetval.sortBy)
+
     let todofilt = todo.filter(function(single_todo){
         return single_todo.title.toLowerCase().includes(targetval.title.toLowerCase())
     })
@@ -143,11 +189,15 @@ const serchfunc = function(todo, targetval){
  
  }
 
+
+ // Auto sycronize any tab
  window.addEventListener('storage', function(e){
     if(e.key === 'todos'){
-       nodes = JSON.parse(e.newValue)    
-        saveNotes(nodes)
-        serchfunc(nodes, addtoDo)
+        getSaveNotes = JSON.parse(e.newValue)    
+        saveNotes(getSaveNotes)
+        serchfunc(getSaveNotes, addtoDo)
      }
    
  })
+
+

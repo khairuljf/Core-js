@@ -4,7 +4,7 @@ let max = 20
 
 let random  = Math.floor(Math.random() * (max - min +1)) + min
 
-console.log(random);
+//console.log(random);
 
 
 // Array object 
@@ -43,7 +43,7 @@ const index = notes.findIndex(function(node, index){
     return node.title === 'html'
 })
 
-console.log(index)
+//console.log(index)
 
 // Find data by findIndex
 function findNote(nodes, nodeTitle){
@@ -55,7 +55,7 @@ function findNote(nodes, nodeTitle){
 
 const indexTitle = findNote(notes, 'html');
 
-console.log(indexTitle)
+//console.log(indexTitle)
 
 
 // Find data by find
@@ -66,7 +66,7 @@ const findNotes = function (notes, noteTitle) {
 }
 
 const note = findNotes(notes, 'js')
-console.log(note)
+//console.log(note)
 
 
 const persons ={
@@ -99,12 +99,9 @@ const persons ={
         this.expences.forEach(function(single){
             totalKhoroch =  totalKhoroch + single.ammount;
         })
-
         return `${name} total spend $${totalKhoroch} from $${totalJoma}`
-
     }
 }
-
 
 persons.addIncome('f', 500 );
 persons.addIncome('office', 1000 );
@@ -112,7 +109,7 @@ persons.addIncome('office', 1000 );
 
 persons.addExpences('Tea', 250 );
 persons.addExpences('Cofee', 550 );
-console.log(persons.accountSummary());
+//console.log(persons.accountSummary());
 
 
 
@@ -128,8 +125,6 @@ mybdt.addEventListener('click', function(e){
         mybdt.classList.add("readmore");
         e.target.textContent ="Read more"
     }
-    
-   
 })
 
 
@@ -138,9 +133,7 @@ document.querySelector('#hidetxt').addEventListener('click', function(){
     document.querySelectorAll('.noted').forEach(function(single_note){
         single_note.remove()
     })
-
 })
-
 
 // start Search function 
 const renderNotes = function (notes, filters) {
@@ -201,24 +194,26 @@ const todoList = getSaveNotes()
 
 const addtoDo ={
     title:'',
-    hidecomple:false
+    sortBy:'lastEdit',
 }
 
 // Onload search list call function
 
- serchfunc(todoList , addtoDo)
+ serchfunc(todoList, addtoDo)
 
 // Add todo in list
 document.querySelector('#additem').addEventListener('submit', function(e){
     e.preventDefault()
-    let ele = e.target.elements.addtodo;
-
-
+    let ele = e.target.elements.addtodo
+    console.log(e.target.elements.addtodo)
+    let timeStamp =  moment().valueOf()
 
       todoList.push({
         id:uuidv4(),
         title:ele.value,
         desk:'',
+        createdAt: timeStamp, 
+        updatedAt: timeStamp, 
         complete:false
     })
 
@@ -240,6 +235,14 @@ document.querySelector('.searchfromtoto').addEventListener('input', function(e){
 // Check box search
 document.querySelector('#completeor').addEventListener('input', function(e){
     addtoDo.hidecomple =  e.target.checked
+    serchfunc(todoList , addtoDo)
+})
+
+// Fiter by drop down
+
+document.querySelector('#filter-by').addEventListener('change', function(e){
+    addtoDo.sortBy =  e.target.value
+    //alert(e.target.value)
     serchfunc(todoList , addtoDo)
 })
 

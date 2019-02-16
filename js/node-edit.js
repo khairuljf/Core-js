@@ -12,7 +12,7 @@ if(node==undefined){
 // Show previous data in input field
  document.querySelector('#input-title').value = node.title
  document.querySelector('#input-require').value = node.desk
-
+ document.querySelector('#input-time').innerHTML = `Last edited : ${moment(node.updatedAt).fromNow() }` 
 // Update data function
 const updateData = function(currentId){
 
@@ -22,6 +22,8 @@ const updateData = function(currentId){
 
     nodes[selectItem].title =  document.querySelector('#input-title').value
     nodes[selectItem].desk = document.querySelector('#input-require').value
+    nodes[selectItem].updatedAt = moment().valueOf()
+
 }
 
 // Update Title
@@ -51,8 +53,7 @@ window.addEventListener('storage', function(e){
          // Show previous data in input field
           document.querySelector('#input-title').value = node.title
           document.querySelector('#input-require').value = node.desk
- 
-    
+
     }
   
 })
