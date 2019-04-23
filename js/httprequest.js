@@ -24,8 +24,13 @@ function getCountryDetails(counteryCode,callbck){
     request.addEventListener('readystatechange', (e)=>{
         if(e.target.readyState===4 && e.target.status===200){
             const data = JSON.parse(e.target.responseText)
-            const result = data.find(singleCountry=>singleCountry.callingCodes ==`${counteryCode}` )
+
+            console.log(data)
+
+            const result = data.find(singleCountry=>singleCountry.alpha2Code ===`${counteryCode}` )
             callbck(undefined, result.name)
+        }else if(e.target.readyState===4){
+            callbck('Unable to fetch Data')
         }
     })
 

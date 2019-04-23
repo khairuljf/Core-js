@@ -101,6 +101,7 @@ gameStatus.textContent = game1.getStatusMessage()
      })
 
 
+    // Get pluzzle word 
      getPuzzle('3',(error, puzzle)=>{
        if(error){
            console.log(`Error : ${error}`)
@@ -110,11 +111,12 @@ gameStatus.textContent = game1.getStatusMessage()
      })
 
 
-     getCountryDetails('880', (error, cDetails)=>{
+    // Get contry name by country code 
+     getCountryDetails('BD', (error, country)=>{
             if(error){
                 console.log(`Error : ${error}`)
             }else{
-                console.log(cDetails)
+                console.log(`Country name is : ${country}`)
             }
      })
 
