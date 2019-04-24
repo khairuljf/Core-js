@@ -101,24 +101,21 @@ gameStatus.textContent = game1.getStatusMessage()
      })
 
 
-    // Get pluzzle word 
-     getPuzzle('3',(error, puzzle)=>{
-       if(error){
-           console.log(`Error : ${error}`)
-       }else{
-           console.log(puzzle)
-       }
+    // Get pluzzle word by promise 
+     getPuzzle("3").then((puzzle)=>{
+            console.log(puzzle)
+     }).catch((error)=>{
+         console.log(`Error ${error}`)
      })
 
 
-    // Get contry name by country code 
-     getCountryDetails('BD', (error, country)=>{
-            if(error){
-                console.log(`Error : ${error}`)
-            }else{
-                console.log(`Country name is : ${country}`)
-            }
+    // Getcountry details by function
+     getCountryDetails('BD').then((data)=>{
+        console.log(data)
+     }).catch((error)=>{
+         console.log(`Error ${error}`)
      })
+
 
   
 
