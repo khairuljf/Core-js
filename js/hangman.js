@@ -5,9 +5,7 @@ class Hangman{
     this.word =  word.toLowerCase().split('')
     this.remainingGuesses = remainingGuesses
     this.guessedLetters = []
-    this.status = 'Playing'
-
-    }
+    this.status = 'Playing'}
 
     calculateStatus(){
         let finished = true
@@ -24,10 +22,8 @@ class Hangman{
         }else if(finished){
             this.status = 'Finished'
         }else{
-            this.status = 'Playing'
+            this.status = 'Playing' }
         }
-
-    }
 
     getStatusMessage(){
 
@@ -36,8 +32,7 @@ class Hangman{
         }else if(this.status ==='Failed'){
             return ` Nice try! The word was "${this.word.join('')}".`
         }else{
-            return ' Success : Great work'
-        }
+            return ' Success : Great work'}
 
     }
 
@@ -76,42 +71,49 @@ class Hangman{
 }
 
 
-
-
-const game1 = new Hangman('cat', 2)
+let game1
 
 // View query
 const getPluzzle =  document.querySelector('#getPluzzle')
 const guessremaining =  document.querySelector('#remaining')
 let gameStatus = document.querySelector('#gstatus')
 
-getPluzzle.textContent =  game1.getPuzzle()
-//guessremaining.textContent = game1.remainingGuesses
-gameStatus.textContent = game1.getStatusMessage()
 
 
     window.addEventListener('keypress', (e)=>{
-       
         game1.makeGuess(e.key)
-        getPluzzle.textContent =  game1.getPuzzle()
-    
-         //guessremaining.textContent = game1.remainingGuesses
-         gameStatus.textContent = game1.getStatusMessage()
-
+        render()
      })
 
+     const render = ()=>{
+        getPluzzle.textContent =  game1.getPuzzle()
+        gameStatus.textContent = game1.getStatusMessage()
+     }
+
+     // Start game 
+     const startGame =  async ()=>{
+         const puzzle =  await getPuzzle()
+         game1 = new Hangman(puzzle, 5)
+         render()
+     }
+
+     document.querySelector('#reset').addEventListener('click', startGame)
+
+     startGame()
+   
 
     // Get pluzzle word by promise 
-     getPuzzle("3").then((puzzle)=>{
-            console.log(puzzle)
-     }).catch((error)=>{
-         console.log(`Error ${error}`)
-     })
+    //  getPuzzle("3").then((puzzle)=>{
+    //         console.log(puzzle)
+    //  }).catch((error)=>{
+    //      console.log(`Error ${error}`)
+    //  })
 
 
     // Getcountry details by function
      getCountryDetails('BD').then((data)=>{
-        console.log(data)
+        //console.log(data) // All data 
+        console.log(data.name)
      }).catch((error)=>{
          console.log(`Error ${error}`)
      })
