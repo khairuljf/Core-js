@@ -5,24 +5,25 @@ class Hangman{
     this.word =  word.toLowerCase().split('')
     this.remainingGuesses = remainingGuesses
     this.guessedLetters = []
-    this.status = 'Playing'}
+    this.status = 'Playing'
+}
 
     calculateStatus(){
-        let finished = true
-    this.word.forEach((letter)=>{
-        if(this.guessedLetters.includes(letter)){
-           
-        }else{
-            finished = false  
-        }
-    })
+                let finished = true
+            this.word.forEach((letter)=>{
+                if(this.guessedLetters.includes(letter)){
+                
+                }else{
+                    finished = false  
+                }
+            })
 
-    if(this.remainingGuesses === 0){
-            this.status = 'Failed'
-        }else if(finished){
-            this.status = 'Finished'
-        }else{
-            this.status = 'Playing' }
+            if(this.remainingGuesses === 0){
+                    this.status = 'Failed'
+                }else if(finished){
+                    this.status = 'Finished'
+                }else{
+                    this.status = 'Playing' }
         }
 
     getStatusMessage(){
@@ -58,8 +59,7 @@ class Hangman{
     
         if(isUnique){
             this.guessedLetters.push(guess)
-            //console.log('success')
-           
+            console.log('pushed')
         }
         if(isUnique && isBadGuess ){
             this.remainingGuesses --
@@ -93,7 +93,7 @@ let gameStatus = document.querySelector('#gstatus')
      // Start game 
      const startGame =  async ()=>{
          const puzzle =  await getPuzzle()
-         game1 = new Hangman(puzzle, 5)
+         game1 = new Hangman('cache',3)
          render()
      }
 
