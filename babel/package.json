@@ -1,0 +1,15 @@
+{
+  "name": "babel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "input.js",
+  "scripts": {
+   "build":"babel src/input.js --out-file public/scripts/output.js --presets env --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.4.4",
+    "babel-preset-env": "^1.7.0"
+  }
+}
